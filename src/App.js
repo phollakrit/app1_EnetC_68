@@ -1,11 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { userContext } from './context';
 
-import MessageBox from './state-func';
+import Header2 from './context-header2';
+import Content2 from './context-content2';
 
 
 
 function App() {
-  return <MessageBox/>
+  let [user,setUser]=useState('')
+  return (
+    <userContext.Provider value={[user,setUser]}>
+      <Header2/>
+      <Content2/>
+    </userContext.Provider>
+  )
 }
 
 export default App;
