@@ -1,18 +1,21 @@
-import React, { useState } from 'react'
-import { userContext } from './context';
+import { createContext, useState } from "react";
+import Menu from "./component/Menu";
+import Quiz from "./component/Quiz";
+import Score from "./component/Score";
 
-import Header2 from './context-header2';
-import Content2 from './context-content2';
+export const DataContext=createContext()
 
-
-
-function App() {
-  let [user,setUser]=useState('')
+function App() { 
+  const [appState,setAppState]=useState("menu")
   return (
-    <userContext.Provider value={[user,setUser]}>
-      <Header2/>
-      <Content2/>
-    </userContext.Provider>
+    <DataContext.Provider value={{appState,setAppState}}>
+    <div className="App">
+      <h1>Web Development Quiz</h1>
+      {appState === "menu" && <Menu/>}
+      {appState === "quiz" && <Quiz/>}
+      {appState === "score" && <Score/>}
+    </div>
+    </DataContext.Provider>
   )
 }
 
